@@ -58,5 +58,26 @@ namespace IEvangelist.CSharp.Seven.Features
 
             var difference = max - min;
         }
+
+        internal void InstantiatePerson()
+        {
+            var person = new Person(("David", "Pine"), 32);
+            var firstName = person.Name.First;
+            var lastName = person.Name.Last;
+            var age = person.Age;
+        }
+    }
+
+    internal class Person
+    {
+        internal (string First, string Last) Name { get; }
+
+        internal int Age { get; }
+
+        internal Person((string FirstName, string LastName) name, int age)
+        {
+            Name = name;
+            Age = age;
+        }
     }
 }
