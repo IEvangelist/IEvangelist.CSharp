@@ -2,27 +2,38 @@
 using System;
 using static System.Console;
 using static System.DateTime;
+using static Interesting.CustomConsole;
 
 namespace IEvangelist.CSharp.Six
 {
     class Program
     {
-        /// <summary>Using the nameof operator is extremely powerful</summary>
-        private const string David = nameof(David);
-        private const string Pine = nameof(Pine);
+        private void ThrowHelper(Version version)
+        {
+            if (version == null)
+            {
+                //throw new ArgumentNullException("version"); // Before C# 6
+                throw new ArgumentNullException(nameof(version));
+            }
+        }
 
-        /// <summary>String interpolation</summary>
+        private const string David = "David";
+        // private const string David = nameof(David);
+        private const string Pine = nameof(Pine);        
+
         private static readonly string FullName = $"{David} {Pine}";
 
         private static DateTime DateOfBirth = new DateTime(1984, 7, 7);
-        private static double AgeInDays = (Now - DateOfBirth).TotalDays;
+
+        private static double AgeInDays => (Now - DateOfBirth).TotalDays;
 
         /// <summary>Perect for the singleton pattern, only set once.</summary>
         private static string PropertyFullName { get; } = FullName;
 
         /// <summary>Re-evaluates the expression with every access.</summary>
         private static string Greeting 
-            => $"{FullName}... who just so happens to be {AgeInDays:#,#} days old!";
+            => $"{FullName}... who just so happens to be {AgeInDays:#,#} " + // don't do this...
+               $"days old and was born on {DateOfBirth:MMMM d yyyy}";
 
         static void Main(string[] args)
         {
@@ -33,6 +44,18 @@ namespace IEvangelist.CSharp.Six
             example.RequestStatusChanged += status => WriteLine(status);
             WriteLine(example.GetJokeAsync().Result);
             WriteLine();
+            ReadLine();
+        }
+    }
+}
+
+namespace Interesting
+{
+    public class CustomConsole
+    {
+        // Make static for ambigious demo
+        public void WriteLine(string message)
+        {
         }
     }
 }
