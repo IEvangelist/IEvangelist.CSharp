@@ -27,7 +27,7 @@ namespace IEvangelist.CSharp.Six
 
         private static double AgeInDays => (Now - DateOfBirth).TotalDays;
 
-        /// <summary>Perect for the singleton pattern, only set once.</summary>
+        /// <summary>Perfect for the singleton pattern, only set once.</summary>
         private static string PropertyFullName { get; } = FullName;
 
         /// <summary>Re-evaluates the expression with every access.</summary>
@@ -53,7 +53,7 @@ namespace Interesting
 {
     public class CustomConsole
     {
-        // Make static for ambigious demo
+        // Make static for ambiguous demo
         public void WriteLine(string message)
         {
         }

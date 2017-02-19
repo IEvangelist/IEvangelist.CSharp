@@ -16,13 +16,13 @@ namespace IEvangelist.CSharp.Seven.Features
 
         internal void PrintStars(object obj)
         {
-            if (obj is null)
+            if (obj is null) // Constant pattern "null"
             {
-                return; // Constant pattern "null"
+                return;
             }
-            if (!(obj is int i))
+            if (!(obj is int i)) // Type pattern "int i"
             {
-                return; // Type pattern "int i"
+                return;
             }
 
             WriteLine(new string('*', i));
@@ -30,15 +30,15 @@ namespace IEvangelist.CSharp.Seven.Features
             var f = i; // Note: that "i" is still available to us in this scope.
         }
 
-        internal static void WriteInt32(object o)
+        internal static void WriteInt32(object obj)
         {
-            if (o is int i || (o is string s && TryParse(s, out i)))
+            if (obj is int i || (obj is string s && TryParse(s, out i)))
             {
                 WriteLine(i);
             }
             else
             {
-                WriteLine($"{o} is not an int");
+                WriteLine($"{obj} is not an int [ System.Int32 ]");
             }
         }
 
@@ -63,7 +63,11 @@ namespace IEvangelist.CSharp.Seven.Features
 
         class Circle : Shape
         {
-            internal double Radius => (Height / 2) + (Pow(Length, 2) / 8 * Height);
+            internal double Radius => Height / 2;
+
+            internal double Diameter => Radius * 2;
+
+            internal double Circumference => 2 * PI * Radius;
 
             internal Circle(double height = 0, double length = 0) : base(height, length) { }
         }
@@ -82,7 +86,7 @@ namespace IEvangelist.CSharp.Seven.Features
                 switch (shape)
                 {
                     case Circle c:
-                        WriteLine($"circle with radius {c.Radius}");
+                        WriteLine($"circle with circumference {c.Circumference}");
                         break;
                     case Rectangle s when (s.IsSquare):
                         WriteLine($"{s.Length} x {s.Height} square");

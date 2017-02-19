@@ -8,13 +8,9 @@ namespace IEvangelist.CSharp.Seven.Features
     {
         internal static IEnumerable<char> AlphabetSubset(char start, char end)
         {
-            if ((start < 'a') || (start > 'z'))
-                throw new ArgumentOutOfRangeException(nameof(start), "start must be a letter");
-            if ((end < 'a') || (end > 'z'))
-                throw new ArgumentOutOfRangeException(nameof(end), "end must be a letter");
-
-            if (end <= start)
-                throw new ArgumentException($"{nameof(end)} must be greater than {nameof(start)}");
+            if ((start < 'a') || (start > 'z')) throw new ArgumentOutOfRangeException(nameof(start), "start must be a letter");
+            if ((end < 'a') || (end > 'z')) throw new ArgumentOutOfRangeException(nameof(end), "end must be a letter");
+            if (end <= start) throw new ArgumentException($"{nameof(end)} must be greater than {nameof(start)}");
 
             for (var @char = start; @char < end; ++ @char)
             {
@@ -24,13 +20,9 @@ namespace IEvangelist.CSharp.Seven.Features
 
         internal static IEnumerable<char> AlphabetSubset2(char start, char end)
         {
-            if ((start < 'a') || (start > 'z'))
-                throw new ArgumentOutOfRangeException(nameof(start), "start must be a letter");
-            if ((end < 'a') || (end > 'z'))
-                throw new ArgumentOutOfRangeException(nameof(end), "end must be a letter");
-
-            if (end <= start)
-                throw new ArgumentException($"{nameof(end)} must be greater than {nameof(start)}");
+            if ((start < 'a') || (start > 'z')) throw new ArgumentOutOfRangeException(nameof(start), "start must be a letter");
+            if ((end < 'a') || (end > 'z')) throw new ArgumentOutOfRangeException(nameof(end), "end must be a letter");
+            if (end <= start) throw new ArgumentException($"{nameof(end)} must be greater than {nameof(start)}");
 
             return AlphabetSubsetImpl(start, end);
         }
@@ -45,13 +37,9 @@ namespace IEvangelist.CSharp.Seven.Features
 
         internal static IEnumerable<char> AlphabetSubset3(char start, char end)
         {
-            if ((start < 'a') || (start > 'z'))
-                throw new ArgumentOutOfRangeException(nameof(start), "start must be a letter");
-            if ((end < 'a') || (end > 'z'))
-                throw new ArgumentOutOfRangeException(nameof(end), "end must be a letter");
-
-            if (end <= start)
-                throw new ArgumentException($"{nameof(end)} must be greater than {nameof(start)}");
+            if ((start < 'a') || (start > 'z')) throw new ArgumentOutOfRangeException(nameof(start), "start must be a letter");
+            if ((end < 'a') || (end > 'z')) throw new ArgumentOutOfRangeException(nameof(end), "end must be a letter");
+            if (end <= start) throw new ArgumentException($"{nameof(end)} must be greater than {nameof(start)}");
 
             return alphabetSubsetImpl();
 
@@ -66,12 +54,9 @@ namespace IEvangelist.CSharp.Seven.Features
 
         internal Task<string> PerformLongRunningWorkAsync(string address, int index, string name)
         {
-            if (string.IsNullOrWhiteSpace(address))
-                throw new ArgumentException("An address is required", nameof(address));
-            if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), "The index must be non-negative");
-            if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentException("You must supply a name", nameof(name));
+            if (string.IsNullOrWhiteSpace(address)) throw new ArgumentException("An address is required", nameof(address));
+            if (index < 0) throw new ArgumentOutOfRangeException(nameof(index), "The index must be non-negative");
+            if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("You must supply a name", nameof(name));
 
             return longRunningWorkImplementation();
 
