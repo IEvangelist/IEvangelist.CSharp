@@ -4,7 +4,9 @@ namespace IEvangelist.CSharp.Seven.Features
 {
     class MoreExpressionBodiedMembers
     {
-        // C# 6 introduced expression-bodied members for member functions, and read-only properties.
+        // C# 6 introduced expression-bodied members for member functions, 
+        // and read-only properties.
+        //
         // C# 7 expands this and you can implement them on:
         //     constructors
         //     finalizers
@@ -31,6 +33,7 @@ namespace IEvangelist.CSharp.Seven.Features
             // Attempting to set this to null, will throw argument null exception
             public string Name
             {
+                get => _name;  // Note: throw expression
                 set => _name = value ?? throw new ArgumentNullException(nameof(value), "New name must not be null");
             }
         }

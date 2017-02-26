@@ -64,7 +64,11 @@ namespace IEvangelist.CSharp.Seven.Features
             {
                 var interimResult = await FirstWorkAsync(address);
                 var secondResult = await SecondStepAsync(index, name);
-                return $"The results are {interimResult} and {secondResult}.";
+
+                return format(interimResult, secondResult);
+
+                string format<TLeft, TRight>(TLeft left, TRight right)
+                    => $"The results are {left} and {right}.";
             }
         }
 

@@ -8,15 +8,16 @@ namespace IEvangelist.CSharp.Seven.Features
 {
     class PatternMatching
     {
-        // C# 7.0 introduces the notion of patterns, which, abstractly speaking, are syntactic elements 
-        // that can test that a value has a certain "shape", and extract information from the value when it does.
+        // C# 7.0 introduces the notion of patterns, which, abstractly speaking, 
+        // are syntactic elements that can test that a value has a certain "shape", 
+        // and extract information from the value when it does.
 
         // Constant and type patterns
         // Is Expressions
 
         internal void PrintStars(object obj)
         {
-            if (obj is null) // Constant pattern "null"
+            if (obj is null) // Constant pattern "null", instead of (obj == null)
             {
                 return;
             }
@@ -69,14 +70,16 @@ namespace IEvangelist.CSharp.Seven.Features
 
             internal double Circumference => 2 * PI * Radius;
 
-            internal Circle(double height = 0, double length = 0) : base(height, length) { }
+            internal Circle(double height = 0, double length = 0) 
+                : base(height, length) { }
         }
 
         class Rectangle : Shape
         {
             internal bool IsSquare => Height == Length;
 
-            internal Rectangle(double height = 0, double length = 0) : base(height, length) { }
+            internal Rectangle(double height = 0, double length = 0) 
+                : base(height, length) { }
         }
 
         internal static void OutputShapes(IEnumerable<Shape> shapes)

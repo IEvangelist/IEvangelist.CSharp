@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 
 namespace IEvangelist.CSharp.Seven.Features
@@ -33,8 +32,8 @@ namespace IEvangelist.CSharp.Seven.Features
             {
                 return -1; // value is available to us here.
             }
-
-            // the value variable is not valid outside the if block scope.
+            
+            // the value variable is again valid in this scope
         }
 
         internal int ExpressiveTryPattern(string number)
@@ -48,12 +47,16 @@ namespace IEvangelist.CSharp.Seven.Features
         static T To<T>(string value, TryParseDelegate<T> parse)
             => parse(value as string, out T result) ? result : default(T);
 
-        internal static int ToInt32(this string value) => To<int>(value, int.TryParse);
+        internal static int ToInt32(this string value) 
+            => To<int>(value, int.TryParse);
 
-        internal static DateTime ToDateTime(this string value) => To<DateTime>(value, DateTime.TryParse);
+        internal static DateTime ToDateTime(this string value) 
+            => To<DateTime>(value, DateTime.TryParse);
 
-        internal static IPAddress ToIPAddress(this string value) => To<IPAddress>(value, IPAddress.TryParse);
+        internal static IPAddress ToIPAddress(this string value) 
+            => To<IPAddress>(value, IPAddress.TryParse);
 
-        internal static TimeSpan ToTimeSpan(this string value) => To<TimeSpan>(value, TimeSpan.TryParse);
+        internal static TimeSpan ToTimeSpan(this string value) 
+            => To<TimeSpan>(value, TimeSpan.TryParse);
     }
 }

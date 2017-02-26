@@ -28,7 +28,7 @@ namespace IEvangelist.CSharp.Six.Features
             if (_messages?.Any() == true)
             {
                 // Wait a sec... I thought the .Any() returns bool.
-                // Indeed it does, but with null propogation it could be null
+                // Indeed it does, but with null propagation it could be null
                 // So the entire expression is actually a bool?
             }
 
