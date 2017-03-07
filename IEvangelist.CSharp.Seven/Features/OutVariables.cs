@@ -45,7 +45,7 @@ namespace IEvangelist.CSharp.Seven.Features
         delegate bool TryParseDelegate<T>(string s, out T result);
 
         static T To<T>(string value, TryParseDelegate<T> parse)
-            => parse(value as string, out T result) ? result : default(T);
+            => parse(value, out T result) ? result : default(T);
 
         internal static int ToInt32(this string value) 
             => To<int>(value, int.TryParse);

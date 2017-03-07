@@ -9,6 +9,9 @@ namespace IEvangelist.CSharp.Seven.Features
         // Prior to C# 7, Tuples existed as an API - but had many limitations.
         // You are probably familiar with the .Item1, .Item2, .Item3, etc...
 
+        // Benefits:
+        //    Readability and Immutable
+        
         internal void LegacyTuple()
         {
             var letters = new Tuple<string, string>("a", "b");
@@ -45,7 +48,7 @@ namespace IEvangelist.CSharp.Seven.Features
             return (max, min);
         }
 
-        private static (T Max, T Min) Range<T>(IEnumerable<T> enumerable)
+        private static (T Min, T Max) Range<T>(IEnumerable<T> enumerable)
             => (enumerable.Min(), enumerable.Max());
 
         private void AssignmentVsDeconstruction()
@@ -54,7 +57,7 @@ namespace IEvangelist.CSharp.Seven.Features
             var range = Range(new[] { 3, 5, 7, 9 });
 
             // Deconstruction, variables max and min are available in scope.
-            (decimal max, decimal min) = Range(new[] { 3.13m, 5.7m, 7.77901m, 9.8m });
+            (decimal min, decimal max) = Range(new[] { 3.13m, 5.7m, 7.77901m, 9.8m });
 
             var difference = max - min;
         }

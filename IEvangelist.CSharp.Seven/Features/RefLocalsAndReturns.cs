@@ -31,7 +31,7 @@ namespace IEvangelist.CSharp.Seven.Features
             return (-1, -1); // Not found
         }
 
-        internal void ExampleOne()
+        internal static void ExampleOne()
         {
             var indices = Find(matrix, (val) => val == 42);
             Console.WriteLine(indices);
@@ -48,11 +48,11 @@ namespace IEvangelist.CSharp.Seven.Features
             throw new InvalidOperationException("Not found");
         }
 
-        internal void ExampleTwo()
+        internal static void ExampleTwo()
         {
-            ref var item = ref FindReference(matrix, (val) => val == 42);
+            ref var item = ref FindReference(matrix, (val) => val == 24);
             Console.WriteLine(item);
-            item = 24; // This is a reference
+            item = 777; // This is a reference
             Console.WriteLine(matrix[5, 5]);
         }
     }

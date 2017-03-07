@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using System.Threading.Tasks;
 
 namespace IEvangelist.CSharp.Seven
 {
@@ -16,10 +17,10 @@ namespace IEvangelist.CSharp.Seven
         {
             WriteLine("C# 7 -- Demo with David Pine");
 
-            captureIterationTimes(nums => GeneralizedAsync.SumAsync(nums).Result);
-            captureIterationTimes(nums => GeneralizedAsync.SumValueAsync(nums).Result);
+            captureIterationTimes(nameof(Task<int>), nums => GeneralizedAsync.SumAsync(nums).Result);
+            captureIterationTimes(nameof(ValueTask<int>), nums => GeneralizedAsync.SumValueAsync(nums).Result);
 
-            void captureIterationTimes(Func<IEnumerable<int>, int> getSum)
+            void captureIterationTimes(string type, Func<IEnumerable<int>, int> getSum)
             {
                 var sw = new Stopwatch();
                 sw.Start();
@@ -28,7 +29,7 @@ namespace IEvangelist.CSharp.Seven
                     var sum = getSum(generateNumbers());
                 }
                 sw.Stop();
-                WriteLine($"{sw.Elapsed}");
+                WriteLine($"{type} {sw.Elapsed}");
             }
 
             IEnumerable<int> generateNumbers()
@@ -44,7 +45,18 @@ namespace IEvangelist.CSharp.Seven
             //var iterator = AlphabetSubset3('f', 'a');
             var iterator = AlphabetSubset3('a', 'f');
             WriteLine("AlphabetSubset iterator created...");
-            foreach (var @char in iterator) Write($"{@char}, ");
+            foreach (var @char in iterator)
+            {
+                Write($"{@char}, ");
+            }
+
+            RefLocalsAndReturns.ExampleOne();
+            RefLocalsAndReturns.ExampleTwo();
+
+            var example = string.Join("", new[] { null, "", "7" }.Select(str => str.ToInt32()));
+            WriteLine($"{example} Bond, James Bond (shaken, not stirred)...");
+
+            ReadLine();
         }
     }
 }
