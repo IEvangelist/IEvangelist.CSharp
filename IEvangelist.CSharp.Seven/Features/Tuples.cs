@@ -10,7 +10,7 @@ namespace IEvangelist.CSharp.Seven.Features
         // You are probably familiar with the .Item1, .Item2, .Item3, etc...
 
         // Benefits:
-        //    Readability and Immutable, replies on System.ValueTuple.dll
+        //    Readability and Immutable, relies on System.ValueTuple.dll
         
         internal void LegacyTuple()
         {
