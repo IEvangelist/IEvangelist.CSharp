@@ -21,6 +21,17 @@ namespace IEvangelist.CSharp.Seven.Features
             {
                 return;
             }
+
+            // Look closely at this syntax. This is where we start mixing
+            // metaphors. Historically in C# we could use "is" to do simply 
+            // type assertions "obj is [type]", and we all know how to declare
+            // a variable "int i". This new syntax merges these concepts 
+            // together and is more compound / expressive.
+
+            // (obj is int i)
+            // "obj is int"     // type assertion
+            //        "int i"   // declaration
+
             if (!(obj is int i)) // Type pattern "int i"
             {
                 return;
@@ -33,6 +44,11 @@ namespace IEvangelist.CSharp.Seven.Features
 
         internal static void WriteInt32(object obj)
         {
+            // Notice that "i" has a declaration from the "is expression"
+            // We can re-use that declaration in our "TryParse".
+            // If the order of these two checks are swapped, we'll get a
+            // compilation error as "i" is not declared.
+
             if (obj is int i || (obj is string s && TryParse(s, out i)))
             {
                 WriteLine(i);
@@ -70,7 +86,7 @@ namespace IEvangelist.CSharp.Seven.Features
 
             internal double Circumference => 2 * PI * Radius;
 
-            internal Circle(double height = 0, double length = 0) 
+            internal Circle(double height = 10, double length = 10) 
                 : base(height, length) { }
         }
 
@@ -78,7 +94,7 @@ namespace IEvangelist.CSharp.Seven.Features
         {
             internal bool IsSquare => Height == Length;
 
-            internal Rectangle(double height = 0, double length = 0) 
+            internal Rectangle(double height = 10, double length = 10) 
                 : base(height, length) { }
         }
 
@@ -86,6 +102,8 @@ namespace IEvangelist.CSharp.Seven.Features
         {
             foreach (var shape in shapes)
             {
+                // Previously, this was not permitted. Types had to be concrete
+                // such as enums, numerics, bools, strings, etc.
                 switch (shape)
                 {
                     case Circle c:

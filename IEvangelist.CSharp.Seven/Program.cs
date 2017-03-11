@@ -24,22 +24,20 @@ namespace IEvangelist.CSharp.Seven
             {
                 var sw = new Stopwatch();
                 sw.Start();
-                for (var i = 0; i < 1000; ++ i)
+                for (var i = 0; i < 5000; ++ i)
                 {
                     var sum = getSum(generateNumbers());
                 }
                 sw.Stop();
-                WriteLine($"{type} {sw.Elapsed}");
+                WriteLine($"{type.PadLeft(10)} {sw.Elapsed}");
             }
 
             IEnumerable<int> generateNumbers()
-                => Enumerable.Range(0, 1000)
+                => Enumerable.Range(0, 1500)
                              .Select(i => i * Random.Next(1, 15));
 
-            ReadLine();
-
-            //GeneralizedAsync.SumAsync
-
+            waitForEnterKey();
+            
             //var iterator = AlphabetSubset('f', 'a');
             //var iterator = AlphabetSubset2('f', 'a');
             //var iterator = AlphabetSubset3('f', 'a');
@@ -49,14 +47,27 @@ namespace IEvangelist.CSharp.Seven
             {
                 Write($"{@char}, ");
             }
+            waitForEnterKey();
+
+            DoNotEverDoThisAync().Wait();
+
+            waitForEnterKey();
 
             RefLocalsAndReturns.ExampleOne();
             RefLocalsAndReturns.ExampleTwo();
 
+            waitForEnterKey();
+
             var example = string.Join("", new[] { null, "", "7" }.Select(str => str.ToInt32()));
             WriteLine($"{example} Bond, James Bond (shaken, not stirred)...");
 
-            ReadLine();
+            void waitForEnterKey()
+            {
+                WriteLine();
+                WriteLine("Press [Enter] key to continue...");
+                ReadLine();
+                WriteLine();
+            }
         }
     }
 }

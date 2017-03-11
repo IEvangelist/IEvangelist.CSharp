@@ -16,7 +16,7 @@ namespace IEvangelist.CSharp.Six.Features
             var client = new HttpClient();
             try
             {
-                const string url = "https://api.chucknorris.io/jokes/random";
+                const string url = "https://api.chucknorris.io/jokes/random?limitTo=[nerdy]";
                 OnRequestStatusChanged($"HTTP Request > {url}");
                 var response = await client.GetStringAsync(url);
                 var joke = JsonConvert.DeserializeObject<Joke>(response);

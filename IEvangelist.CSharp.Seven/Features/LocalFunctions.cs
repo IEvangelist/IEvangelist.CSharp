@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace IEvangelist.CSharp.Seven.Features
@@ -77,5 +78,52 @@ namespace IEvangelist.CSharp.Seven.Features
 
         private Task<string> SecondStepAsync(int index, string name)
             => Task.FromResult("Second step... done");
+
+        internal static async Task DoNotEverDoThisAync()
+        {
+            var result =
+                buildString(
+                    await getAsync(0b01001000),
+                    await getAsync(0b01100101),
+                    await getAsync(null),
+                    await getAsync(null),
+                    await getAsync(0x6C),
+                    await getAsync(0b01101100),
+                    await getAsync(0x6F),
+                    await getAsync(' '),
+                    await getAsync(null),
+                    await getAsync(0x57),
+                    await getAsync(111),
+                    await getAsync('r'),
+                    await getAsync(null),
+                    await getAsync(0b01101100),
+                    await getAsync(100),
+                    await getAsync(null));
+
+            Console.WriteLine("I can't wait to see what the result is!");
+            Console.ReadLine();
+            Console.WriteLine(result);
+
+            return; // What is this stuff below?
+
+            ValueTask<char> getAsync(object value)
+            {
+                switch (value)
+                {
+                    case int i:
+                        return new ValueTask<char>((char)i);
+                    case char c:
+                        return new ValueTask<char>(c);
+                    case null:
+                        return new ValueTask<char>('\0');
+
+                    default:
+                        throw new ArgumentException(nameof(value));
+                }
+            }
+
+            string buildString(params char[] chars)
+                => new string(chars.Where(c => c != '\0').ToArray());
+        }
     }
 }

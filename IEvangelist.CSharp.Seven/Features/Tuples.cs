@@ -10,7 +10,7 @@ namespace IEvangelist.CSharp.Seven.Features
         // You are probably familiar with the .Item1, .Item2, .Item3, etc...
 
         // Benefits:
-        //    Readability and Immutable
+        //    Readability and Immutable, replies on System.ValueTuple.dll
         
         internal void LegacyTuple()
         {
@@ -21,11 +21,41 @@ namespace IEvangelist.CSharp.Seven.Features
 
         internal void ValueTuple()
         {
-            var letters = ("a", "b"); // ValueTuple
+            var letters = ('a', 'b'); // ValueTuple
             var a = letters.Item1;
             var b = letters.Item2;
 
             // Note: ToTuple extension method
+            var systemTuple = letters.ToTuple();
+            var c = systemTuple.Item1;
+            var d = systemTuple.Item2;
+
+            var stringAndNumber = ("programming is fun", 7);
+            var s = stringAndNumber.Item1;
+            var n = stringAndNumber.Item2;
+
+            // Re-assign to show intellisense
+            var wordAndNum = (Word: "programming", Number: 7);
+
+            // Item1 and Item2 are actually hidden
+            var word = wordAndNum.Word; 
+            var number = wordAndNum.Number;
+
+            // Deconstruction
+            (string str0, int num0) = wordAndNum;
+            (var str1, var num1) = wordAndNum;
+            var (str2, num2) = wordAndNum;
+
+            if (s == str0 && n == num0 &&
+                s == str1 && n == num1 &&
+                s == str2 && n == num2)
+            {
+                // This would get executed...
+            }
+
+            // More examples
+            var (now, tenSeconds) =
+                (DateTime.Now, TimeSpan.FromSeconds(10));
         }
 
         internal void NamedTuplesAssignment()
@@ -57,8 +87,9 @@ namespace IEvangelist.CSharp.Seven.Features
             var range = Range(new[] { 3, 5, 7, 9 });
 
             // Deconstruction, variables max and min are available in scope.
-            (decimal min, decimal max) = Range(new[] { 3.13m, 5.7m, 7.77901m, 9.8m });
-
+            (decimal min, decimal max) = 
+                Range<decimal>(new[] { 3.13m, 5.7m, 7.77901m, 9.8m });
+            
             var difference = max - min;
         }
 

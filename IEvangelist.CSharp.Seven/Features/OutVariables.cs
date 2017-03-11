@@ -32,7 +32,7 @@ namespace IEvangelist.CSharp.Seven.Features
             {
                 return -1; // value is available to us here.
             }
-            
+
             // the value variable is again valid in this scope
         }
 
