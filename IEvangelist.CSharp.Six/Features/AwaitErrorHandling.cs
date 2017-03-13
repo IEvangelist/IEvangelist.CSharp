@@ -9,7 +9,8 @@ namespace IEvangelist.CSharp.Six.Features
     {
         internal event Action<string> RequestStatusChanged;
 
-        // In C# 5, you were not permitted to use an await statement within a catch or finally block.
+        // In C# 5, you were not permitted to use an await statement within 
+        // a catch or finally block.
 
         internal async Task<string> GetJokeAsync()
         {

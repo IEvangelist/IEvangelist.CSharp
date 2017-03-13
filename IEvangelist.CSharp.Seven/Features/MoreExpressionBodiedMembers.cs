@@ -34,7 +34,8 @@ namespace IEvangelist.CSharp.Seven.Features
             public string Name
             {
                 get => _name;  // Note: throw expression
-                set => _name = value ?? throw new ArgumentNullException(nameof(value), "New name must not be null");
+                set => _name = 
+                    value ?? throw new ArgumentNullException(nameof(value), "New name must not be null");
             }
         }
     }

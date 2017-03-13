@@ -24,7 +24,8 @@ namespace IEvangelist.CSharp.Seven.Features
 
         internal int NewTryPattern(string number)
         {
-            if (int.TryParse(number, out var value)) // Note: we can be explicit, but implicit is valid
+            // Note: we can be explicit, but implicit is valid
+            if (int.TryParse(number, out var value))
             {
                 return value;
             }
@@ -42,9 +43,9 @@ namespace IEvangelist.CSharp.Seven.Features
 
     static class StringExtensions
     {
-        delegate bool TryParseDelegate<T>(string s, out T result);
+        private delegate bool TryParseDelegate<T>(string s, out T result);
 
-        static T To<T>(string value, TryParseDelegate<T> parse)
+        private static T To<T>(string value, TryParseDelegate<T> parse)
             => parse(value, out T result) ? result : default(T);
 
         internal static int ToInt32(this string value) 
