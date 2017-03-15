@@ -79,6 +79,23 @@ namespace IEvangelist.CSharp.Seven.Features
         private Task<string> SecondStepAsync(int index, string name)
             => Task.FromResult("Second step... done");
 
+        internal static void LambdaVsLocal()
+        {
+            //              Local functions     Lambdas
+            // -----------------------------------------
+            // Generic      Yes                 No
+            // Iterator     Yes                 No
+            // Recursion    Yes                 No
+            // Allocatey    No                  Yes
+            // Declaration  No                  Yes
+
+            var one = sumNumbers(1092, 7134);
+            // var two = addNumbers(1092, 134);
+
+            int sumNumbers(int x, int y) => x + y;
+            Func<int, int, int> addNumbers = (x, y) => x + y;
+        }
+
         internal static async Task DoNotEverDoThisAync()
         {
             var result =
