@@ -18,10 +18,12 @@ namespace IEvangelist.CSharp.Seven.Features
             private string _name;
 
             // Expression-bodied constructor
-            public ExpressionMembersExample(string label) => Label = label;
+            public ExpressionMembersExample(string label) 
+                => Label = label;
 
             // Expression-bodied finalizer
-            ~ExpressionMembersExample() => Console.Error.WriteLine("Finalized!");            
+            ~ExpressionMembersExample() 
+                => Console.Error.WriteLine("Finalized!");            
 
             // Expression-bodied get / set accessors.
             public string Label
@@ -35,7 +37,9 @@ namespace IEvangelist.CSharp.Seven.Features
             {
                 get => _name;  // Note: throw expression
                 set => _name = 
-                    value ?? throw new ArgumentNullException(nameof(value), "New name must not be null");
+                    value ?? 
+                    throw new ArgumentNullException(
+                        nameof(value), "New name must not be null");
             }
         }
     }

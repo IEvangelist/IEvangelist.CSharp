@@ -86,12 +86,13 @@ namespace IEvangelist.CSharp.Seven.Features
             // Generic      Yes                 No
             // Iterator     Yes                 No
             // Recursion    Yes                 No
-            // Allocatey    No                  Yes
+            // Allocatey    No                  Yes - Heap
             // Declaration  No                  Yes
 
             var one = sumNumbers(1092, 7134);
             // var two = addNumbers(1092, 134);
 
+            // #NotAsUgly
             int sumNumbers(int x, int y) => x + y;
             Func<int, int, int> addNumbers = (x, y) => x + y;
         }
