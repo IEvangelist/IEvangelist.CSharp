@@ -2,6 +2,12 @@
 {
     class BinaryLiterals
     {
+        // These have been around
+        public const int Hex = 0x10;    // Hexadecimal
+        public const int Dec = 7;       // Decimal
+        public const int Oct = 076;     // Octal
+        public const double Sci = 10e1; // Scientific
+
         // C# 7 now supports binary literals 
         // The 0b at the beginning of the constant indicates that the 
         // number is written as a binary number.Binary numbers can
