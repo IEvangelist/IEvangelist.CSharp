@@ -8,33 +8,33 @@ namespace IEvangelist.CSharp.Seven.Features
         internal int LegacyTryPattern(string number)
         {
 #pragma warning disable IDE0018 // Inline variable declaration
-            int value;
+            int i;
 #pragma warning restore IDE0018 // Inline variable declaration
-            if (int.TryParse(number, out value))
+            if (int.TryParse(number, out i))
             {
-                return value;
+                return i;
             }
             else
             {
                 return -1;
             }
 
-            // The "value" variable is valid here
+            // The "i" variable is valid here
         }
 
         internal int NewTryPattern(string number)
         {
             // Note: we can be explicit, but implicit is valid
-            if (int.TryParse(number, out var value))
+            if (int.TryParse(number, out var i))
             {
-                return value;
+                return i;
             }
             else
             {
-                return -1; // "value" is available to us here.
+                return -1; // "i" is available to us here.
             }
 
-            // The "value" variables leaks into this scope.
+            // The "i" variables leaks into this scope.
         }
 
         internal void ScopeExample()

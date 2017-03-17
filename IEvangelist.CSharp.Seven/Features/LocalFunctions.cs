@@ -71,6 +71,8 @@ namespace IEvangelist.CSharp.Seven.Features
                 string format<TLeft, TRight>(TLeft left, TRight right)
                     => $"The results are {left} and {right}.";
             }
+
+            // Note: the "format" local function is not leaked to this scope
         }
 
         private Task<string> FirstWorkAsync(string address)
