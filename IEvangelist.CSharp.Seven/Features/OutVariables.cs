@@ -19,7 +19,7 @@ namespace IEvangelist.CSharp.Seven.Features
                 return -1;
             }
 
-            // The value variable is valid here
+            // The "value" variable is valid here
         }
 
         internal int NewTryPattern(string number)
@@ -31,10 +31,23 @@ namespace IEvangelist.CSharp.Seven.Features
             }
             else
             {
-                return -1; // value is available to us here.
+                return -1; // "value" is available to us here.
             }
 
-            // the value variable is again valid in this scope
+            // The "value" variables leaks into this scope.
+        }
+
+        internal void ScopeExample()
+        {
+            if (DateTime.TryParse("OMG", out var date))
+            {
+                if (TimeSpan.TryParse("What's happening?", out var ts))
+                {
+                    var newDate = date.Add(ts);
+                }
+            }
+
+            // Note: the "ts" variable is NOT leaked in this scope!
         }
 
         internal int ExpressiveTryPattern(string number)
