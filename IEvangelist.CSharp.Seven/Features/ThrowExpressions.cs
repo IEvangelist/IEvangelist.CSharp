@@ -37,8 +37,10 @@ namespace IEvangelist.CSharp.Seven.Features
         }
     }
 
-    public class SafeGaurdIndexer<T> : List<T> where T : class
+    public class SafeSetList<T> : List<T> where T : class
     {
+        // Don't actually do this, the "new" keyword hides
+
         public new T this[int index]
         {
             get => base[index];

@@ -7,6 +7,7 @@ namespace IEvangelist.CSharp.Six.Features
 {
     class AwaitErrorHandling
     {
+        private const string Url = "http://api.icndb.com/jokes/random?limitTo=[nerdy]";
         internal event Action<string> RequestStatusChanged;
 
         // In C# 5, you were not permitted to use an await statement within 
@@ -17,14 +18,14 @@ namespace IEvangelist.CSharp.Six.Features
             var client = new HttpClient();
             try
             {
-                const string url = "https://api.chucknorris.io/jokes/random?limitTo=[nerdy]";
+                const string url = "http://api.icndb.com/jokes/random?limitTo=[nerdy]";
                 OnRequestStatusChanged($"HTTP Request > {url}");
                 var response = await client.GetStringAsync(url);
-                var joke = JsonConvert.DeserializeObject<Joke>(response);
+                var result = JsonConvert.DeserializeObject<Result>(response);
 
-                return joke.Value;
+                return result?.Value?.Joke;
             }
-            catch (HttpRequestException ex) when (ex.Message.Contains("404"))
+            catch (HttpRequestException ex)
             {
                 await LogAsync(ex);
             }
@@ -55,8 +56,15 @@ namespace IEvangelist.CSharp.Six.Features
             => RequestStatusChanged?.Invoke(message);
     }
 
-    public class Joke
+    public class Result
     {
-        [JsonProperty("value")] public string Value { get; set; }
+        [JsonProperty("type")] public string Type { get; set; }
+        [JsonProperty("value")] public Value Value { get; set; }
+    }
+
+    public class Value
+    {
+        [JsonProperty("id")] public int Id { get; set; }
+        [JsonProperty("joke")] public string Joke { get; set; }
     }
 }
