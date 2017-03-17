@@ -17,8 +17,10 @@ namespace IEvangelist.CSharp.Seven
         {
             WriteLine("C# 7 -- Demo with David Pine");
 
-            captureIterationTimes(nameof(Task<int>), nums => GeneralizedAsync.SumAsync(nums).Result);
-            captureIterationTimes(nameof(ValueTask<int>), nums => GeneralizedAsync.SumValueAsync(nums).Result);
+            captureIterationTimes(nameof(Task<int>), 
+                nums => GeneralizedAsync.SumAsync(nums).Result);
+            captureIterationTimes(nameof(ValueTask<int>), 
+                nums => GeneralizedAsync.SumValueAsync(nums).Result);
 
             void captureIterationTimes(string type, Func<IEnumerable<int>, int> getSum)
             {

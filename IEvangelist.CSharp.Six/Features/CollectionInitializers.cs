@@ -12,6 +12,8 @@ namespace IEvangelist.CSharp.Six.Features
             { "Three", 3 }
         };
 
+        // This is more consistent with its usage 
+        // where we use the index to assign a value
         internal IDictionary<string, int> StringMap = new Dictionary<string, int>
         {
             ["Zero"] = 0,
