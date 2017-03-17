@@ -26,10 +26,9 @@ namespace IEvangelist.CSharp.Seven
             {
                 var sw = new Stopwatch();
                 sw.Start();
-                for (var i = 0; i < 5000; ++ i)
-                {
-                    var sum = getSum(generateNumbers());
-                }
+                
+                5000.Times(() => getSum(generateNumbers()));
+
                 sw.Stop();
                 WriteLine($"{type.PadLeft(10)} {sw.Elapsed}");
             }
@@ -69,6 +68,17 @@ namespace IEvangelist.CSharp.Seven
                 WriteLine("Press [Enter] key to continue...");
                 ReadLine();
                 WriteLine();
+            }
+        }
+    }
+
+    internal static class IntExtensions
+    {
+        internal static void Times(this int count, Action action)
+        {
+            for (int i = 0; i < count; ++ i)
+            {
+                action();
             }
         }
     }
