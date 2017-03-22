@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace IEvangelist.CSharp.Seven.Features
 {
@@ -15,7 +16,13 @@ namespace IEvangelist.CSharp.Seven.Features
         private class ExpressionMembersExample
         {
             private string _label;
-            private string _name;
+            private IDictionary<int, string> _example =
+                new Dictionary<int, string>
+                {
+                    [0] = "Zero",
+                    [1] = "One",
+                    [2] = "Two"
+                };
 
             // Expression-bodied constructor
             public ExpressionMembersExample(string label) 
@@ -32,14 +39,10 @@ namespace IEvangelist.CSharp.Seven.Features
                 set => _label = value ?? "Unset";
             }
 
-            // Attempting to set this to null, will throw argument null exception
-            public string Name
+            public string this[int index]
             {
-                get => _name;  // Note: throw expression
-                set => _name = 
-                    value ?? 
-                    throw new ArgumentNullException(
-                        nameof(value), "New name must not be null");
+                get => _example.TryGetValue(index, out var result) ? result : "";
+                set => _example[index] = value;
             }
         }
     }

@@ -45,7 +45,7 @@ namespace IEvangelist.CSharp.Seven.Features
             (string str0, int num0) = wordAndNum;
             (var str1, var num1) = wordAndNum;
             var (str2, num2) = wordAndNum;
-
+            
             if (s == str0 && n == num0 &&
                 s == str1 && n == num1 &&
                 s == str2 && n == num2)
@@ -87,8 +87,8 @@ namespace IEvangelist.CSharp.Seven.Features
             var range = Range(new[] { 3, 5, 7, 9 });
 
             // Deconstruction, variables max and min are available in scope.
-            (decimal min, decimal max) = 
-                Range<decimal>(new[] { 3.13m, 5.7m, 7.77901m, 9.8m });
+            var (min, max) =
+                Range(new[] { 3.13m, 5.7m, 7.77901m, 9.8m });
             
             var difference = max - min;
         }

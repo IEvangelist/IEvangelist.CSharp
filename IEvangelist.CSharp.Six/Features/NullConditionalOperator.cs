@@ -32,6 +32,10 @@ namespace IEvangelist.CSharp.Six.Features
                 // So the entire expression is actually a bool?
             }
 
+            if (_messages?.Any() ?? false)
+            {
+            }
+
             if ((_messages == null ? (bool?)null : _messages.Any()) == true)
             {
             }
