@@ -107,6 +107,9 @@ namespace IEvangelist.CSharp.Seven.Features
             var (frst, lst, _) = person;
             var (f, l, a) = person;
 
+            // Cherry pick
+            var (_, theLastName, _) = person;
+            
             // Note: the use of the _ doesn't actually declare the variable
             // It is not available, it is a way to ignore that ordinal.
         }
