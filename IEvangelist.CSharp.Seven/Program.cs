@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using System.Threading.Tasks;
+//using Circle = IEvangelist.CSharp.Seven.Features.PatternMatching.Circle;
+using static IEvangelist.CSharp.Seven.Features.PatternMatching;
 
 namespace IEvangelist.CSharp.Seven
 {
@@ -69,6 +71,17 @@ namespace IEvangelist.CSharp.Seven
                 ReadLine();
                 WriteLine();
             }
+
+            OutputShapes(
+                new List<Shape> 
+                {
+                    new Circle(7, 7),
+                    new Rectangle(20, 9),
+                    null,
+                    new Rectangle(32, 32)
+                });
+
+            waitForEnterKey();
         }
     }
 

@@ -78,7 +78,7 @@ namespace IEvangelist.CSharp.Seven.Features
             }
         }
 
-        class Circle : Shape
+        internal class Circle : Shape
         {
             internal double Radius => Height / 2;
 
@@ -90,7 +90,7 @@ namespace IEvangelist.CSharp.Seven.Features
                 : base(height, length) { }
         }
 
-        class Rectangle : Shape
+        internal class Rectangle : Shape
         {
             internal bool IsSquare => Height == Length;
 
@@ -118,8 +118,8 @@ namespace IEvangelist.CSharp.Seven.Features
                     default:
                         WriteLine("This is not a shape that we're familiar with...");
                         break;
-                    case null:
-                        throw new ArgumentNullException(nameof(shape));
+                    //case null:
+                    //    throw new ArgumentNullException(nameof(shape));
                 }
             }
         }

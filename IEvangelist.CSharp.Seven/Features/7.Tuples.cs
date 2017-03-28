@@ -99,6 +99,16 @@ namespace IEvangelist.CSharp.Seven.Features
             var firstName = person.Name.First;
             var lastName = person.Name.Last;
             var age = person.Age;
+
+            // Using explicitly defined "Deconstruct"
+            // method on a non-tuple object
+            var (_, _, _) = person;
+            var (first, _, _) = person;
+            var (frst, lst, _) = person;
+            var (f, l, a) = person;
+
+            // Note: the use of the _ doesn't actually declare the variable
+            // It is not available, it is a way to ignore that ordinal.
         }
     }
 
@@ -112,6 +122,15 @@ namespace IEvangelist.CSharp.Seven.Features
         {
             Name = name;
             Age = age;
+        }
+
+        public void Deconstruct(out string first, 
+                                out string last, 
+                                out int age)
+        {
+            first = Name.First;
+            last = Name.Last;
+            age = Age;
         }
     }
 }
