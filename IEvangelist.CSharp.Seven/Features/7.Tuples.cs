@@ -34,7 +34,7 @@ namespace IEvangelist.CSharp.Seven.Features
             var s = stringAndNumber.Item1;
             var n = stringAndNumber.Item2;
 
-            // Re-assign to show intellisense
+            // Re-assign to show IntelliSense
             var wordAndNum = (Word: "programming", Number: 7);
 
             // Item1 and Item2 are actually hidden
