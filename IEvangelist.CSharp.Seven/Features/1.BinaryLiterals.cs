@@ -1,4 +1,6 @@
-﻿namespace IEvangelist.CSharp.Seven.Features
+﻿using System;
+
+namespace IEvangelist.CSharp.Seven.Features
 {
     class BinaryLiterals
     {
@@ -29,5 +31,11 @@
 
         public const decimal GoldenRatio =
             1.618_033_988_749_894_848_204_586_834_365_638_117_720_309_179M;
+
+        static void Main()
+        {
+            Console.WriteLine($"{nameof(Sixteen)} is {Sixteen}");
+            Console.WriteLine($"{GoldenRatio} is the golden ratio...");
+        }
     }
 }

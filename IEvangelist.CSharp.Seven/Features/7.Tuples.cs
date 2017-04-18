@@ -24,7 +24,7 @@ namespace IEvangelist.CSharp.Seven.Features
             var letters = ('a', 'b'); // ValueTuple
             var a = letters.Item1;
             var b = letters.Item2;
-
+            
             // Note: ToTuple extension method
             var systemTuple = letters.ToTuple();
             var c = systemTuple.Item1;
@@ -36,7 +36,7 @@ namespace IEvangelist.CSharp.Seven.Features
 
             // Re-assign to show IntelliSense
             var wordAndNum = (Word: "programming", Number: 7);
-
+            
             // Item1 and Item2 are actually hidden
             var word = wordAndNum.Word; 
             var number = wordAndNum.Number;
@@ -88,7 +88,7 @@ namespace IEvangelist.CSharp.Seven.Features
 
             // Deconstruction, variables max and min are available in scope.
             var (min, max) =
-                Range(new[] { 3.13m, 5.7m, 7.77901m, 9.8m });
+                Range<decimal>(new[] { 3.13m, 5.7m, 7.77901m, 9.8m });
             
             var difference = max - min;
         }
@@ -113,18 +113,37 @@ namespace IEvangelist.CSharp.Seven.Features
             // Note: the use of the _ doesn't actually declare the variable
             // It is not available, it is a way to ignore that ordinal.
         }
+
+        static void Main()
+        {
+            var davidPine = new Person(("David", "Pine"), 32);
+            var someoneElse = new Person(("Someone", "Else"), -1);
+
+            davidPine.CopyTo(someoneElse);
+
+            Console.WriteLine($"{nameof(someoneElse)} is now {someoneElse}");
+            Console.WriteLine(davidPine.Name);
+        }
     }
 
     internal class Person
     {
-        internal (string First, string Last) Name { get; }
+        internal (string First, string Last) Name { get; private set; }
 
-        internal int Age { get; }
+        internal int Age { get; private set; }
 
-        internal Person((string FirstName, string LastName) name, int age)
+        internal Person((string FirstName, string LastName) name, 
+                        int age)
         {
             Name = name;
             Age = age;
+        }
+
+        public void Deconstruct(out (string, string) name,
+                                out int age)
+        {
+            name = Name;
+            age = Age;
         }
 
         public void Deconstruct(out string first, 
@@ -135,5 +154,11 @@ namespace IEvangelist.CSharp.Seven.Features
             last = Name.Last;
             age = Age;
         }
+
+        public void CopyTo(Person person) 
+            => (person.Name, person.Age) = (Name, Age);
+
+        public override string ToString() 
+            => $"{Name.First} {Name.Last} ({Age})";
     }
 }

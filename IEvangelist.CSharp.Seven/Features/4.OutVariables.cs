@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Linq;
 
 namespace IEvangelist.CSharp.Seven.Features
 {
@@ -25,7 +26,7 @@ namespace IEvangelist.CSharp.Seven.Features
         internal int NewTryPattern(string number)
         {
             // Note: we can be explicit, but implicit is valid
-            if (int.TryParse(number, out var i))
+            if (int.TryParse(number, out int i))
             {
                 return i;
             }
@@ -33,7 +34,6 @@ namespace IEvangelist.CSharp.Seven.Features
             {
                 return -1; // "i" is available to us here.
             }
-
             // The "i" variables leaks into this scope.
         }
 
@@ -52,6 +52,12 @@ namespace IEvangelist.CSharp.Seven.Features
 
         internal int ExpressiveTryPattern(string number)
             => int.TryParse(number, out int value) ? value : -1;
+
+        static void Main()
+        {
+            var example = string.Join("", new[] { null, "", "7" }.Select(str => str.ToInt32()));
+            Console.WriteLine($"{example} Bond, James Bond (shaken, not stirred)...");
+        }
     }
 
     static class StringExtensions

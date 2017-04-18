@@ -17,8 +17,8 @@ namespace IEvangelist.CSharp.Six
             }
         }
 
-        private const string David = "David";
-        // private const string David = nameof(David);
+        //private const string David = "David";
+        private const string David = nameof(David);
         private const string Pine = nameof(Pine);        
 
         private static readonly string FullName = $"{David} {Pine}";

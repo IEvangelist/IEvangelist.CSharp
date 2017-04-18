@@ -31,13 +31,6 @@ namespace IEvangelist.CSharp.Seven.Features
             return (-1, -1); // Not found
         }
 
-        internal static void ExampleOne()
-        {
-            var indices = Find(matrix, (val) => val == 42);
-            Console.WriteLine(indices);
-            matrix[indices.i, indices.j] = 24;
-        }
-
         static ref int FindReference(int[,] matrix, Func<int, bool> predicate)
         {
             for (int i = 0; i < matrix.GetLength(0); ++ i)
@@ -48,11 +41,19 @@ namespace IEvangelist.CSharp.Seven.Features
             throw new InvalidOperationException("Not found");
         }
 
-        internal static void ExampleTwo()
+        static void Main()
         {
-            ref var item = ref FindReference(matrix, (val) => val == 24);
+            int serach = 42,
+                replacement = 24,
+                refAssignment = 777;
+
+            var indices = Find(matrix, (val) => val == serach);
+            Console.WriteLine(indices);
+            matrix[indices.i, indices.j] = replacement;
+
+            ref var item = ref FindReference(matrix, (val) => val == replacement);
             Console.WriteLine(item);
-            item = 777; // This is a reference
+            item = refAssignment; // This is a reference
             Console.WriteLine(matrix[5, 5]);
         }
     }

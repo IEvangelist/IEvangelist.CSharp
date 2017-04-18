@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
+using System.Diagnostics;
+
 
 namespace IEvangelist.CSharp.Seven.Features
 {
@@ -26,7 +30,6 @@ namespace IEvangelist.CSharp.Seven.Features
 
         internal static ValueTask<int> SumValueAsync(IEnumerable<int> numbers)
         {
-
             if (numbers.Any())
             {
                 return new ValueTask<int>(Task.Run(() => numbers.Sum()));
@@ -52,6 +55,44 @@ namespace IEvangelist.CSharp.Seven.Features
                                        searchPattern,
                                        SearchOption.AllDirectories)
                              .Sum(t => new FileInfo(t).Length)));
+            }
+        }
+
+        private static Random Random = new Random((int)DateTime.Now.Ticks);
+
+        static void Main()
+        {
+            var numbers = generateNumbers().ToList();
+            captureIterationTimes(nameof(Task<int>),
+                nums => GeneralizedAsync.SumAsync(nums).Result, numbers);
+            captureIterationTimes(nameof(ValueTask<int>),
+                nums => GeneralizedAsync.SumValueAsync(nums).Result, numbers);
+
+            void captureIterationTimes(string type, Func<IEnumerable<int>, int> getSum, List<int> ints)
+            {
+                var sw = new Stopwatch();
+                sw.Start();
+
+                5000.Times(() => getSum(ints));
+
+                sw.Stop();
+                Console.WriteLine($"{type.PadLeft(10)} {sw.Elapsed}");
+            }
+
+            IEnumerable<int> generateNumbers()
+                => Enumerable.Range(0, 1500)
+                             .Select(i => i * Random.Next(1, 15));
+
+        }
+    }
+
+    static class IntExtensions
+    {
+        internal static void Times(this int count, Action action)
+        {
+            for (int i = 0; i < count; ++ i)
+            {
+                action();
             }
         }
     }

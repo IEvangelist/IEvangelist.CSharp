@@ -19,9 +19,11 @@ namespace IEvangelist.CSharp.Seven.Features
             private IDictionary<int, string> _example =
                 new Dictionary<int, string>
                 {
-                    [0] = "Zero",
-                    [1] = "One",
-                    [2] = "Two"
+                    [0] = "Potato",
+                    [1] = "Cookies",
+                    [2] = "Chips",
+                    [3] = "Cheese",
+                    [5] = "Pepperoni"
                 };
 
             // Expression-bodied constructor
@@ -44,6 +46,12 @@ namespace IEvangelist.CSharp.Seven.Features
                 get => _example.TryGetValue(index, out var result) ? result : "";
                 set => _example[index] = value;
             }
+        }
+
+        static void Main()
+        {
+            var example = new ExpressionMembersExample("Do not label me!");
+            Console.WriteLine($"{example[0]} {example[2]} {example[7]}");
         }
     }
 }

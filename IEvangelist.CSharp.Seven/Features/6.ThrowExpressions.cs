@@ -44,8 +44,25 @@ namespace IEvangelist.CSharp.Seven.Features
         public new T this[int index]
         {
             get => base[index];
-            set => base[index] = 
-                value ?? throw new NullReferenceException(nameof(value));
+            set => base.Add(
+                value ?? throw new NullReferenceException(nameof(value)));
+        }
+    }
+
+    static class ThrowExpressions
+    {
+        static void Main()
+        {
+            var list = new SafeSetList<Version>();
+            list[0] = new Version(1, 0, 0, 0);
+            try
+            {
+                list[1] = null; // Goes bang!
+            }
+            catch
+            {
+                Console.WriteLine("Safety first!");
+            }
         }
     }
 

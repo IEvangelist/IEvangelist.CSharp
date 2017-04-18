@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using static System.Console;
 using static System.Int32;
 using static System.Math;
@@ -15,7 +14,7 @@ namespace IEvangelist.CSharp.Seven.Features
         // Constant and type patterns
         // Is Expressions
 
-        internal void PrintStars(object obj)
+        static void PrintStars(object obj)
         {
             if (obj is null) // Constant pattern "null", instead of (obj == null)
             {
@@ -42,7 +41,7 @@ namespace IEvangelist.CSharp.Seven.Features
             var f = i; // Note: that "i" is still available to us in this scope.
         }
 
-        internal static void WriteInt32(object obj)
+        static void WriteInt32(object obj)
         {
             // Notice that "i" has a declaration from the "is expression"
             // We can re-use that declaration in our "TryParse".
@@ -98,7 +97,7 @@ namespace IEvangelist.CSharp.Seven.Features
                 : base(height, length) { }
         }
 
-        internal static void OutputShapes(IEnumerable<Shape> shapes)
+        static void OutputShapes(IEnumerable<Shape> shapes)
         {
             foreach (var shape in shapes)
             {
@@ -122,6 +121,18 @@ namespace IEvangelist.CSharp.Seven.Features
                     //    throw new ArgumentNullException(nameof(shape));
                 }
             }
+        }
+
+        static void Main()
+        {
+            OutputShapes(
+                new List<Shape>
+                {
+                    new Circle(7, 7),
+                    new Rectangle(20, 9),
+                    null,
+                    new Rectangle(32, 32)
+                });
         }
     }
 }
