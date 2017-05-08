@@ -1,8 +1,7 @@
-﻿using IEvangelist.CSharp.Six.Features;
-using System;
+﻿using System;
+using IEvangelist.CSharp.Six.Features;
 using static System.Console;
 using static System.DateTime;
-using static Interesting.CustomConsole;
 
 namespace IEvangelist.CSharp.Six
 {
@@ -42,8 +41,12 @@ namespace IEvangelist.CSharp.Six
 
             var example = new AwaitErrorHandling();
             example.RequestStatusChanged += status => WriteLine(status);
-            WriteLine(example.GetJokeAsync().Result);
-            WriteLine();
+            do
+            {
+                WriteLine(example.GetJokeAsync().Result);
+                WriteLine("\nType 'Y' for another joke.\n");
+            } while (ReadKey().Key == ConsoleKey.Y);
+            
             ReadLine();
         }
     }
@@ -53,9 +56,10 @@ namespace Interesting
 {
     public class CustomConsole
     {
-        // Make static for ambiguous demo
+        // When static, this is ambiguous
         public void WriteLine(string message)
         {
+            // Obviously...
         }
     }
 }

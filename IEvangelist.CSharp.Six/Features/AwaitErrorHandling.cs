@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace IEvangelist.CSharp.Six.Features
 {
@@ -18,9 +18,8 @@ namespace IEvangelist.CSharp.Six.Features
             var client = new HttpClient();
             try
             {
-                const string url = "http://api.icndb.com/jokes/random?limitTo=[nerdy]";
-                OnRequestStatusChanged($"HTTP Request > {url}");
-                var response = await client.GetStringAsync(url);
+                OnRequestStatusChanged($"HTTP Request > {Url}");
+                var response = await client.GetStringAsync(Url);
                 var result = JsonConvert.DeserializeObject<Result>(response);
 
                 return result?.Value?.Joke;
