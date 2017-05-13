@@ -7,7 +7,7 @@ namespace IEvangelist.CSharp.Seven.Features
         // These have been around
         public const int Hex = 0x10;    // Hexadecimal, 10
         public const int Dec = 7;       // Decimal, 7
-        public const int Oct = 076;     // Octal, 76
+        public const int Oct = 076;     // Octal, 62 [ This does NOT actually work ]
         public const double Sci = 10e1; // Scientific (E notation), 100,000,000
 
         // C# 7 now supports binary literals 
@@ -34,6 +34,7 @@ namespace IEvangelist.CSharp.Seven.Features
 
         static void Main()
         {
+            Console.WriteLine(Oct);
             Console.WriteLine($"{nameof(Sixteen)} is {Sixteen}");
             Console.WriteLine($"{GoldenRatio} is the golden ratio...");
         }

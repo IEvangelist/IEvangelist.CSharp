@@ -11,8 +11,8 @@ namespace IEvangelist.CSharp.Six
         {
             if (version == null)
             {
-                //throw new ArgumentNullException("version"); // Before C# 6
-                throw new ArgumentNullException(nameof(version));
+                throw new ArgumentNullException("version"); // Before C# 6
+                // throw new ArgumentNullException(nameof(version));
             }
         }
 
