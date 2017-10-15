@@ -97,31 +97,29 @@ namespace IEvangelist.CSharp.Seven.Features
                 : base(height, length) { }
         }
 
-        static void OutputShapes(IEnumerable<Shape> shapes)
-        {
-            foreach (var shape in shapes)
-            {
-                // Previously, this was not permitted. Types had to be concrete
-                // such as enums, numerics, bools, strings, etc.
-                switch (shape)
-                {
-                    case Circle c:
-                        WriteLine($"circle with circumference {c.Circumference}");
-                        break;
-                    case Rectangle s when (s.IsSquare):
-                        WriteLine($"{s.Length} x {s.Height} square");
-                        break;
-                    case Rectangle r:
-                        WriteLine($"{r.Length} x {r.Height} rectangle");
-                        break;
-                    default:
-                        WriteLine("This is not a shape that we're familiar with...");
-                        break;
-                    //case null:
-                    //    throw new ArgumentNullException(nameof(shape));
-                }
-            }
-        }
+        static void OutputShapes(List<Shape> shapes)
+            => shapes.ForEach(shape =>
+               {
+                   // Previously, this was not permitted. Types had to be concrete
+                   // such as enums, numerics, bools, strings, etc.
+                   switch (shape)
+                   {
+                       case Circle c:
+                           WriteLine($"circle with circumference {c.Circumference}");
+                           break;
+                       case Rectangle s when (s.IsSquare):
+                           WriteLine($"{s.Length} x {s.Height} square");
+                           break;
+                       case Rectangle r:
+                           WriteLine($"{r.Length} x {r.Height} rectangle");
+                           break;
+                       default:
+                           WriteLine("This is not a shape that we're familiar with...");
+                           break;
+                       //case null:
+                       //    throw new ArgumentNullException(nameof(shape));
+                   }
+               });
 
         static void Main()
         {

@@ -18,9 +18,7 @@ namespace IEvangelist.CSharp.Seven.Features
         };
 
         #endregion
-
-        // For public API, class or struct is preferred...
-
+        
         static (int i, int j) Find(int[,] matrix, Func<int, bool> predicate)
         {
             for (int i = 0; i < matrix.GetLength(0); ++ i)

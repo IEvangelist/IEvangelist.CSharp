@@ -10,21 +10,26 @@ namespace IEvangelist.CSharp.Seven.Features
         // You are probably familiar with the .Item1, .Item2, .Item3, etc...
 
         // Benefits:
-        //    Readability and Immutable, relies on System.ValueTuple.dll
+        //    Readability and "Immutable", relies on System.ValueTuple.dll
         
-        internal void LegacyTuple()
+        static void LegacyTuple()
         {
             var letters = new Tuple<string, string>("a", "b");
             var a = letters.Item1;
             var b = letters.Item2;
+
+            // letters.Item1 = "c";
         }
 
-        internal void ValueTuple()
+        static void ValueTuple()
         {
             var letters = ('a', 'b'); // ValueTuple
             var a = letters.Item1;
             var b = letters.Item2;
-            
+
+            // OMG, WTF?!
+            letters.Item1 = 'c';
+
             // Note: ToTuple extension method
             var systemTuple = letters.ToTuple();
             var c = systemTuple.Item1;
@@ -34,13 +39,16 @@ namespace IEvangelist.CSharp.Seven.Features
             var s = stringAndNumber.Item1;
             var n = stringAndNumber.Item2;
 
-            // Re-assign to show IntelliSense
+            // Example to show IntelliSense
             var wordAndNum = (Word: "programming", Number: 7);
-            
+
             // Item1 and Item2 are actually hidden
             var word = wordAndNum.Word; 
             var number = wordAndNum.Number;
 
+            // OMG, WTF?!
+            wordAndNum = ("is fun", 10);
+            
             // Deconstruction
             (string str0, int num0) = wordAndNum;
             (var str1, var num1) = wordAndNum;
@@ -58,7 +66,7 @@ namespace IEvangelist.CSharp.Seven.Features
                 (DateTime.Now, TimeSpan.FromSeconds(10));
         }
 
-        internal void NamedTuplesAssignment()
+        static void NamedTuplesAssignment()
         {
             var numbers = (One: 1, Two: DateTime.Now, Three: new { Pizza = "yummy" });
             var one = numbers.One;
@@ -81,7 +89,7 @@ namespace IEvangelist.CSharp.Seven.Features
         private static (T Min, T Max) Range<T>(IEnumerable<T> enumerable)
             => (enumerable.Min(), enumerable.Max());
 
-        private void AssignmentVsDeconstruction()
+        static void AssignmentVsDeconstruction()
         {
             // Assignment, range has .Min and .Max
             var range = Range(new[] { 3, 5, 7, 9 });
@@ -93,7 +101,7 @@ namespace IEvangelist.CSharp.Seven.Features
             var difference = max - min;
         }
 
-        internal void InstantiatePerson()
+        static void InstantiatePerson()
         {
             var person = new Person(("David", "Pine"), 32);
             var firstName = person.Name.First;
@@ -116,6 +124,8 @@ namespace IEvangelist.CSharp.Seven.Features
 
         static void Main()
         {
+            ValueTuple();
+
             var davidPine = new Person(("David", "Pine"), 32);
             var someoneElse = new Person(("Someone", "Else"), -1);
 

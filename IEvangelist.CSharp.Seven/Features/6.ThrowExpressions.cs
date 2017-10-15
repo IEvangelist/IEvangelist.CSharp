@@ -53,8 +53,10 @@ namespace IEvangelist.CSharp.Seven.Features
     {
         static void Main()
         {
-            var list = new SafeSetList<Version>();
-            list[0] = new Version(1, 0, 0, 0);
+            var list = new SafeSetList<Version>
+            {
+                [0] = new Version(1, 0, 0, 0)
+            };
             try
             {
                 list[1] = null; // Goes bang!
